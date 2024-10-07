@@ -28,16 +28,6 @@ function displayNotification() {
   });
 }
 
-const button = document.getElementById("notifyMe");
-const notifyOn = Notification.permission === "granted";
-
-if (button) {
-  button.addEventListener("click", (e) => {
-    console.log(Notification.permission);
-    if (notifyOn) {
-      displayNotification();
-    } else {
-      //Can't turn off notifications via JS - need to do this in Chrome
-    }
-  });
-}
+button.addEventListener("click", (e) => {
+  displayNotification();
+});
