@@ -28,6 +28,8 @@ function displayNotification() {
   });
 }
 
+const button = document.getElementById("notifyMe");
+
 button.addEventListener("click", (e) => {
   displayNotification();
 });
