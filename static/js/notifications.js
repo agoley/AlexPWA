@@ -5,8 +5,8 @@ const MyNotification = {
   //Doesnt work on Apple!
   image: "/static/img/speaking.jpg",
   //Sound is not supported... YET
-  sound: "/static/sounds/BOTW_Fanfare_HeartContainer.wav",
-  click_action: "/speaking.html",
+  //   sound: "/static/sounds/BOTW_Fanfare_HeartContainer.wav",
+  click_action: "/",
   //Keeps the notification displayed
   requireInteraction: false,
   //dont play a sound
