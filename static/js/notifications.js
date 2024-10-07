@@ -1,7 +1,7 @@
 //The spec: https://notifications.spec.whatwg.org/
 const MyNotification = {
   body: "Check out where I'll be speaking next",
-  icon: "/static/img/icons/icon-384x384.png",
+  icon: "static/img/icons/icon-384x384.png",
   //Doesnt work on Apple!
   image: "/static/img/speaking.jpg",
   //Sound is not supported... YET
