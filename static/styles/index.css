@@ -203,7 +203,7 @@ body {
   height: 100%;
   background-color: #fbfbfb;
   background-image: url(../img/dot-grid.png);
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.65);
   background-blend-mode: lighten;
   color: #333;
   line-height: 1.42857143;
