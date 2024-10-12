@@ -1,9 +1,9 @@
 //The spec: https://notifications.spec.whatwg.org/
 const MyNotification = {
   body: "This is getting personal! Say hello :)",
-  icon: "static/img/icons/icon-384x384.png",
+  icon: "static/img/e-mail-symbol.png",
   //Doesnt work on Apple!
-  image: "/static/img/e-mail-symbol",
+  image: "static/img/icons/icon-384x384.png",
   //Sound is not supported... YET
   //   sound: "/static/sounds/BOTW_Fanfare_HeartContainer.wav",
   click_action: "/",
