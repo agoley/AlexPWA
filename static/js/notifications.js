@@ -23,14 +23,16 @@ const MyNotification = {
 const button = document.getElementById("notifyMe");
 
 function sendHug(notification) {
-  notification.onclick = function () {
+  notification.onclick = function (event) {
+    event.preventDefault();
+
     location.href =
       "mailto:" +
       "ajgoley@gmail.com" +
       "&subject=" +
       "Saying Hi" +
       "&body=" +
-      "Hey, I like your site 👍.";
+      "Hey, I like your site. It's very progressive 👍.";
   };
 }
 
