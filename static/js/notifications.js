@@ -26,13 +26,7 @@ function sendHug(notification) {
   notification.onclick = function (event) {
     event.preventDefault();
 
-    location.href =
-      "mailto:" +
-      "ajgoley@gmail.com" +
-      "&subject=" +
-      "Saying Hi" +
-      "&body=" +
-      "Hey, I like your site. It's very progressive 👍.";
+    window.open("https://www.linkedin.com/in/alex-goley-6230479b/", "_blank");
   };
 }
 
