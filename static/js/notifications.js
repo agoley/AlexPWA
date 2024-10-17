@@ -1,7 +1,7 @@
 //The spec: https://notifications.spec.whatwg.org/
 const MyNotification = {
-  body: "This is getting personal! Say hello 😆",
-  icon: "static/img/e-mail-symbol.png",
+  body: "This is getting personal! Click to say hello 😆",
+  icon: "static/img/linkedin-secondary-136x136.png",
   //Doesnt work on Apple!
   image: "static/img/icons/icon-384x384.png",
   //Sound is not supported... YET
@@ -24,17 +24,9 @@ const button = document.getElementById("notifyMe");
 
 function sendToLinkedIn(notification) {
   notification.onclick = function (event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent default action of opening site.
 
-    console.log("notification callback");
-    const link = document.createElement("a");
-    link.href = "mailto: ajgoley@gmail.com";
-    link.target = "_blank";
-    link.style = "display: none";
-    document.body.appendChild(link);
-    link.click();
-
-    // window.open("https://www.linkedin.com/in/alex-goley-6230479b/", "_blank");
+    window.open("https://www.linkedin.com/in/alex-goley-6230479b/", "_blank");
   };
 }
 
