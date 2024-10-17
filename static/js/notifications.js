@@ -26,9 +26,9 @@ function sendHug(notification) {
   notification.onclick = function () {
     location.href =
       "mailto:" +
-      emailTo +
-      '&subject="Saying Hi"' +
-      emailSub +
+      "ajgoley@gmail.com" +
+      "&subject=" +
+      "Saying Hi" +
       "&body=" +
       "Hey, I like your site 👍.";
   };
