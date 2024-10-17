@@ -23,13 +23,14 @@ const MyNotification = {
 const button = document.getElementById("notifyMe");
 
 function sendHug(notification) {
-  notification.onclick = function (event) {
-    event.preventDefault(); // prevent the browser from focusing the Notification's tab
-
-    x = window.open("mailto: ajgoley@gmail.com");
-    setTimeout(() => {
-      x.close();
-    }, 10);
+  notification.onclick = function () {
+    location.href =
+      "mailto:" +
+      emailTo +
+      '&subject="Saying Hi"' +
+      emailSub +
+      "&body=" +
+      "Hey, I like your site 👍.";
   };
 }
 
