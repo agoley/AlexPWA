@@ -22,9 +22,15 @@ const MyNotification = {
 
 const button = document.getElementById("notifyMe");
 
-function sendHug(notification) {
+function sendToLinkedIn(notification) {
   notification.onclick = function (event) {
     event.preventDefault();
+
+    console.log("notification callback");
+    const link = document.createElement("a");
+    link.href = "mailto: ajgoley@gmail.com";
+    document.body.appendChild(link);
+    link.click();
 
     window.open("https://www.linkedin.com/in/alex-goley-6230479b/", "_blank");
   };
@@ -41,7 +47,7 @@ function notifyVisitor() {
       "Permission Granted!",
       MyNotification,
     );
-    sendHug(notification);
+    sendToLinkedIn(notification);
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
     Notification.requestPermission().then((permission) => {
@@ -52,7 +58,7 @@ function notifyVisitor() {
           "Permission Granted!",
           MyNotification,
         );
-        sendHug(notification);
+        sendToLinkedIn(notification);
       }
     });
   }
