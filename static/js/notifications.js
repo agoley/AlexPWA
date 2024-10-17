@@ -29,10 +29,12 @@ function sendToLinkedIn(notification) {
     console.log("notification callback");
     const link = document.createElement("a");
     link.href = "mailto: ajgoley@gmail.com";
+    link.target = "_blank";
+    link.style = "display: none";
     document.body.appendChild(link);
     link.click();
 
-    window.open("https://www.linkedin.com/in/alex-goley-6230479b/", "_blank");
+    // window.open("https://www.linkedin.com/in/alex-goley-6230479b/", "_blank");
   };
 }
 
