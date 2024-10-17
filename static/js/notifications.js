@@ -1,6 +1,6 @@
 //The spec: https://notifications.spec.whatwg.org/
 const MyNotification = {
-  body: "This is getting personal! Click to say hello 😆",
+  body: "This is getting personal! Lets connect 😆",
   icon: "static/img/linkedin-secondary-136x136.png",
   //Doesnt work on Apple!
   image: "static/img/icons/icon-384x384.png",
@@ -20,7 +20,7 @@ const MyNotification = {
   tag: new Date().getTime(),
 };
 
-const button = document.getElementById("notifyMe");
+const hugsButton = document.getElementById("hugsButtonTag");
 
 function sendToLinkedIn(notification) {
   notification.onclick = function (event) {
@@ -37,21 +37,15 @@ function notifyVisitor() {
   } else if (Notification.permission === "granted") {
     // Check whether notification permissions have already been granted;
     // if so, create a notification
-    const notification = new Notification(
-      "Permission Granted!",
-      MyNotification,
-    );
+    const notification = new Notification("Hug Delivered!", MyNotification);
     sendToLinkedIn(notification);
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
     Notification.requestPermission().then((permission) => {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
-        button.innerHTML = "FREE HUG 🤗";
-        const notification = new Notification(
-          "Permission Granted!",
-          MyNotification,
-        );
+        hugsButton.innerHTML = "FREE HUG 🤗";
+        const notification = new Notification("Hug Delivered!", MyNotification);
         sendToLinkedIn(notification);
       }
     });
@@ -61,7 +55,7 @@ function notifyVisitor() {
   // want to be respectful there is no need to bother them anymore.
 }
 if (Notification.permission === "granted") {
-  button.innerHTML = "FREE HUG 🤗";
+  hugsButton.innerHTML = "FREE HUG 🤗";
 }
 
-button.addEventListener("click", notifyVisitor);
+hugsButton.addEventListener("click", notifyVisitor);
