@@ -25,7 +25,11 @@ const button = document.getElementById("notifyMe");
 function sendHug(notification) {
   notification.onclick = function (event) {
     event.preventDefault(); // prevent the browser from focusing the Notification's tab
-    window.open("mailto: ajgoley@gmail.com");
+
+    x = window.open("mailto: ajgoley@gmail.com");
+    setTimeout(() => {
+      x.close();
+    }, 10);
   };
 }
 
