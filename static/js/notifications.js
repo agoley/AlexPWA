@@ -64,7 +64,6 @@ hugsButton.addEventListener("click", notifyVisitor);
 
 function subscribeUserToPush() {
   console.log("subscribing");
-  navigator.serviceWorker.ready.then((reg) => console.log(reg));
   return navigator.serviceWorker.ready
     .then(function (registration) {
       console.log(registration);
