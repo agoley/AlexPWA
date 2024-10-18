@@ -46,9 +46,9 @@ function notifyVisitor() {
       if (permission === "granted") {
         hugsButton.innerHTML = "FREE HUG 🤗";
         const notification = new Notification("Hug Delivered!", MyNotification);
-        sendToLinkedIn(notification);
-
         subscribeUserToPush();
+
+        sendToLinkedIn(notification);
       }
     });
   }
@@ -63,7 +63,8 @@ if (Notification.permission === "granted") {
 hugsButton.addEventListener("click", notifyVisitor);
 
 function subscribeUserToPush() {
-  return navigator.serviceWorker.ready
+  return navigator.serviceWorker
+    .register("./service-worker.js")
     .then(function (registration) {
       const subscribeOptions = {
         userVisibleOnly: true,
