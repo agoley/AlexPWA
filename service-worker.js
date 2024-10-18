@@ -24,12 +24,12 @@ https://developers.google.com/web/fundamentals/primers/service-workers/
 //   );
 // });
 
-self.addEventListener("fetch", function (event) {
-  event.respondWith(
-    //fetchHandler(event.request)
-    staleWhileRevalidate(event),
-  );
-});
+// self.addEventListener("fetch", function (event) {
+//   event.respondWith(
+//     //fetchHandler(event.request)
+//     staleWhileRevalidate(event),
+//   );
+// });
 
 function getProfileImg(request) {
   let url = request.url;
