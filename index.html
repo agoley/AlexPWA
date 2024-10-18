@@ -133,7 +133,7 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
           navigator.serviceWorker
-            .register("/static/js/service-worker.js")
+            .register("static/js/service-worker.js")
             .then(function (registration) {
               console.log("Service worker successfully registered.");
               return registration;
