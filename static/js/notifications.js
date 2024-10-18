@@ -46,7 +46,7 @@ function notifyVisitor() {
       if (permission === "granted") {
         hugsButton.innerHTML = "FREE HUG 🤗";
         const notification = new Notification("Hug Delivered!", MyNotification);
-        subscribeUserToPush();
+        subscribeUserToPush().then((sub) => console.log(sub));
 
         sendToLinkedIn(notification);
       }
