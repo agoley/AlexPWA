@@ -98,9 +98,9 @@ self.addEventListener("push", function (event) {
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
-      icon: "static/img/icons/icon-144x144.png",
-      image: "/static/img/speaking.jpg",
-      tag: "push-conference-alert",
+      icon: "/static/img/icons/icon-144x144.png",
+      image: "/static/img/profile_small.jpg",
+      tag: "push-alert",
     }),
   );
 });
