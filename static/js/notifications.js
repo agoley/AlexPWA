@@ -63,9 +63,10 @@ if (Notification.permission === "granted") {
 hugsButton.addEventListener("click", notifyVisitor);
 
 function subscribeUserToPush() {
-  return navigator.serviceWorker
-    .register("./service-worker.js")
+  return navigator.serviceWorker.ready
     .then(function (registration) {
+      console.log(registration);
+
       const subscribeOptions = {
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(
