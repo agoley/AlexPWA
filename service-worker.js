@@ -105,15 +105,6 @@ self.addEventListener("push", function (event) {
   );
 });
 
-self.addEventListener("sync", function (event) {
-  if (event.tag === "syncConferences") {
-    console.log("Getting the latest speaking engagements");
-    event.waitUntil(
-      caches.open(myCache).then((cache) => cache.add("/speaking.html")),
-    );
-  }
-});
-
 // Use this to check if the user already has your site open and send it a postMessage
 function messageClientWindows() {
   return clients

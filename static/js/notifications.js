@@ -47,6 +47,8 @@ function notifyVisitor() {
         hugsButton.innerHTML = "FREE HUG 🤗";
         const notification = new Notification("Hug Delivered!", MyNotification);
         sendToLinkedIn(notification);
+
+        subscribeUserToPush();
       }
     });
   }
@@ -59,3 +61,24 @@ if (Notification.permission === "granted") {
 }
 
 hugsButton.addEventListener("click", notifyVisitor);
+
+function subscribeUserToPush() {
+  return navigator.serviceWorker.ready
+    .then(function (registration) {
+      const subscribeOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(
+          "BJbRM93fg6KqHGFX6FB8PaDFkCASnKZLJCnteElGbu8vkqF5ksSstJB6X7hqR-9xYGYYGEZPyDSUYJiqwRhuYTQ",
+        ),
+      };
+
+      return registration.pushManager.subscribe(subscribeOptions);
+    })
+    .then(function (pushSubscription) {
+      console.log(
+        "Received PushSubscription: ",
+        JSON.stringify(pushSubscription),
+      );
+      return pushSubscription;
+    });
+}
