@@ -2,13 +2,13 @@
 const MyNotification = {
   body: "This is getting personal! Lets connect 😆",
   icon: "static/img/linkedin-secondary-136x136.png",
-  //Doesnt work on Apple!
+  // Doesn't work on Apple!
   image: "static/img/icons/icon-384x384.png",
   //Sound is not supported... YET
   //   sound: "/static/sounds/BOTW_Fanfare_HeartContainer.wav",
   //Keeps the notification displayed
   requireInteraction: false,
-  //dont play a sound
+  // don't play a sound
   silent: false,
   // Vibration: Star Wars shamelessly taken from the awesome Peter Beverloo
   // https://tests.peter.sh/notification-generator/
@@ -63,6 +63,7 @@ if (Notification.permission === "granted") {
 hugsButton.addEventListener("click", notifyVisitor);
 
 function subscribeUserToPush() {
+  console.log("subscribing");
   return navigator.serviceWorker.ready
     .then(function (registration) {
       console.log(registration);
