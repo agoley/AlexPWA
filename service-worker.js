@@ -85,24 +85,46 @@ self.addEventListener("notificationclick", ({ notification, action }) => {
   }
 });
 
-self.addEventListener("push", function (event) {
-  let title, body;
+// self.addEventListener("push", function (event) {
+//   let title, body;
 
-  try {
-    ({ title, body } = event.data.json());
-  } catch (error) {
-    title = "Dev Tools Push";
-    body = event.data.text();
-  }
+//   try {
+//     ({ title, body } = event.data.json());
+//   } catch (error) {
+//     title = "Dev Tools Push";
+//     body = event.data.text();
+//   }
+
+//   event.waitUntil(
+//     self.registration.showNotification(title, {
+//       body: body,
+//       icon: "static/img/icons/icon-144x144.png",
+//       image: "static/img/profile_small.jpg",
+//       tag: "push-alert",
+//     }),
+//   );
+// });
+
+self.addEventListener("push", function (event) {
+  console.log("Received a push message", event);
+
+  // Display notification or handle data
+  // Example: show a notification
+  const title = "New Notification";
+  const body = event.data.text();
+  const icon = "static/img/icons/icon-144x144.png";
+  const tag = "simple-push-demo-notification-tag";
 
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
-      icon: "static/img/icons/icon-144x144.png",
-      image: "static/img/profile_small.jpg",
-      tag: "push-alert",
+      icon: icon,
+      tag: tag,
     }),
   );
+
+  // Attempt to resubscribe after receiving a notification
+  event.waitUntil(resubscribeToPush());
 });
 
 // Use this to check if the user already has your site open and send it a postMessage

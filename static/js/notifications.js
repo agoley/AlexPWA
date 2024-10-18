@@ -46,7 +46,11 @@ function notifyVisitor() {
       if (permission === "granted") {
         hugsButton.innerHTML = "FREE HUG 🤗";
         const notification = new Notification("Hug Delivered!", MyNotification);
-        subscribeUserToPush();
+        subscribeUserToPush().then((subscription) => {
+          sendSubscriptionToBackEnd(subscription).then((res) => {
+            console.log(res);
+          });
+        });
 
         sendToLinkedIn(notification);
       }
@@ -63,11 +67,8 @@ if (Notification.permission === "granted") {
 hugsButton.addEventListener("click", notifyVisitor);
 
 function subscribeUserToPush() {
-  console.log("subscribing");
   return navigator.serviceWorker.ready
     .then(function (registration) {
-      console.log(registration);
-
       const subscribeOptions = {
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(
@@ -84,21 +85,44 @@ function subscribeUserToPush() {
       );
       return pushSubscription;
     });
+}
 
-  // Web-Push
-  // Public base64 to Uint
-  function urlBase64ToUint8Array(base64String) {
-    var padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-    var base64 = (base64String + padding)
-      .replace(/\-/g, "+")
-      .replace(/_/g, "/");
+// Web-Push
+// Public base64 to Uint
+function urlBase64ToUint8Array(base64String) {
+  var padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  var base64 = (base64String + padding).replace(/\-/g, "+").replace(/_/g, "/");
 
-    var rawData = window.atob(base64);
-    var outputArray = new Uint8Array(rawData.length);
+  var rawData = window.atob(base64);
+  var outputArray = new Uint8Array(rawData.length);
 
-    for (var i = 0; i < rawData.length; ++i) {
-      outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
+  for (var i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
   }
+  return outputArray;
+}
+
+function sendSubscriptionToBackEnd(subscription) {
+  return fetch(
+    "https://alex-pwa-server-88f471dd113d.herokuapp.com/api/save-subscription/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(subscription),
+    },
+  )
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Bad status code from server.");
+      }
+
+      return response.json();
+    })
+    .then(function (responseData) {
+      if (!(responseData.data && responseData.data.success)) {
+        throw new Error("Bad response from server.");
+      }
+    });
 }
