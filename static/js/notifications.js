@@ -46,9 +46,14 @@ function notifyVisitor() {
       if (permission === "granted") {
         hugsButton.innerHTML = "FREE HUG 🤗";
         const notification = new Notification("Hug Delivered!", MyNotification);
+
         subscribeUserToPush().then((subscription) => {
           sendSubscriptionToBackEnd(subscription).then((res) => {
             console.log(res);
+            if (isMobile()) {
+              console.log("is mobile");
+              triggerPushFromBackend().then((res) => console.log(res));
+            }
           });
         });
 
@@ -125,4 +130,41 @@ function sendSubscriptionToBackEnd(subscription) {
         throw new Error("Bad response from server.");
       }
     });
+}
+
+function triggerPushFromBackend() {
+  return fetch(
+    "https://alex-pwa-server-88f471dd113d.herokuapp.com/api/trigger-push-msg/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    },
+  )
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Bad status code from server.");
+      }
+
+      return response.json();
+    })
+    .then(function (responseData) {
+      if (!(responseData.data && responseData.data.success)) {
+        throw new Error("Bad response from server.");
+      }
+    });
+}
+
+function isMobile() {
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    )
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }
