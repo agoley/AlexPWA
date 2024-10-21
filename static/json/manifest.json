@@ -1,7 +1,7 @@
 {
   "name": "Alex Goley Dev",
   "short_name": "Alex Goley Dev",
-  "start_url": "/",
+  "start_url": "/AlexPWA/",
   "display": "standalone",
   "background_color": "#2196f3",
   "theme_color": "#2196f3",

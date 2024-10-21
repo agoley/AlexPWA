@@ -5,31 +5,28 @@ https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookb
 https://developers.google.com/web/fundamentals/primers/service-workers/
 */
 
-// const myCache = "alexgoley-v1";
-// self.addEventListener("install", function (event) {
-//   event.waitUntil(
-//     caches.open(myCache).then(function (cache) {
-//       return cache.addAll([
-//         "/",
-//         "/static/css/main.css",
-//         "/static/img/profile.jpg",
-//         "/static/img/profile_offline.jpg",
-//         "/static/img/profile_old.jpg",
-//         "/static/img/profile_medium.jpg",
-//         "/static/img/profile_small.jpg",
-//         "/static/js/offline.js",
-//         "/static/js/notifications.js",
-//       ]);
-//     }),
-//   );
-// });
+const myCache = "alexgoley-v1";
+self.addEventListener("install", function (event) {
+  event.waitUntil(
+    caches.open(myCache).then(function (cache) {
+      return cache.addAll([
+        "/",
+        "/static/css/main.css",
+        "/static/img/profile.jpg",
+        "/static/img/profile_offline.jpg",
+        "/static/img/profile_old.jpg",
+        "/static/img/profile_medium.jpg",
+        "/static/img/profile_small.jpg",
+        "/static/js/offline.js",
+        "/static/js/notifications.js",
+      ]);
+    }),
+  );
+});
 
-// self.addEventListener("fetch", function (event) {
-//   event.respondWith(
-//     //fetchHandler(event.request)
-//     staleWhileRevalidate(event),
-//   );
-// });
+self.addEventListener("fetch", function (event) {
+  event.respondWith(staleWhileRevalidate(event));
+});
 
 function getProfileImg(request) {
   let url = request.url;
@@ -51,23 +48,23 @@ function getProfileImg(request) {
   }
 }
 
-// const staleWhileRevalidate = (event) =>
-//   caches.open(myCache).then((cache) => {
-//     let request = event.request;
-//     if (/profile\.jpg$/.test(event.request.url)) {
-//       request = getProfileImg(event.request);
-//     }
+const staleWhileRevalidate = (event) =>
+  caches.open(myCache).then((cache) => {
+    let request = event.request;
+    if (/profile\.jpg$/.test(event.request.url)) {
+      request = getProfileImg(event.request);
+    }
 
-//     return cache.match(request).then((response) => {
-//       let fetchPromise = fetch(request)
-//         .then((networkResponse) => {
-//           cache.put(request, networkResponse.clone());
-//           return networkResponse;
-//         })
-//         .catch((e) => caches.match("/static/img/profile.jpg"));
-//       return response || fetchPromise;
-//     });
-//   });
+    return cache.match(request).then((response) => {
+      let fetchPromise = fetch(request)
+        .then((networkResponse) => {
+          cache.put(request, networkResponse.clone());
+          return networkResponse;
+        })
+        .catch((e) => caches.match("/static/img/profile.jpg"));
+      return response || fetchPromise;
+    });
+  });
 
 self.addEventListener("notificationclose", (e) => {
   console.log("Closed notification: ", e);
