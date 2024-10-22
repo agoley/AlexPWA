@@ -52,6 +52,7 @@ function onHugsButtonClick() {
         addClickEvent(notification);
 
         subscribeUserToPush().then((subscription) => {
+          alert(JSON.stringify(subscription));
           sendSubscriptionToBackEnd(subscription).then((res) =>
             console.log(res),
           );
