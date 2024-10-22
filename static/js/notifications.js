@@ -53,6 +53,7 @@ function onHugsButtonClick() {
 
         subscribeUserToPush().then((subscription) => {
           sendSubscriptionToBackEnd(subscription).then((res) =>
+            console.log(res),
           );
         });
       }
