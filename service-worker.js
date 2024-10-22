@@ -15,6 +15,7 @@ const myCache = "alexgoley-v1";
 //         "static/img/profile.jpg",
 //         "static/img/profile_medium.jpg",
 //         "static/img/profile_small.jpg",
+//         "static/img/profile_offline.jpg",
 //         "static/js/notifications.js",
 //       ]);
 //     }),

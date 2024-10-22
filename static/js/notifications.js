@@ -54,7 +54,7 @@ function onHugsButtonClick() {
         addClickEvent(notification);
 
         subscribeUserToPush().then((subscription) => {
-          sendSubscriptionToBackEnd(subscription);
+          sendSubscriptionToBackEnd(subscription).then(res => console.log("res"));
         });
       }
     });
@@ -91,7 +91,6 @@ function subscribeUserToPush() {
         JSON.stringify(pushSubscription),
       );
       return pushSubscription;
-    });
 }
 
 // Web-Push
