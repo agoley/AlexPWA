@@ -42,7 +42,7 @@ function onHugsButtonClick() {
 
       const notification = new Notification("Hug Delivered!", MyNotification);
       addClickEvent(notification);
-    }
+    
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
     Notification.requestPermission().then((permission) => {
