@@ -85,7 +85,7 @@ function subscribeUserToPush() {
 
       return registration.pushManager.subscribe(subscribeOptions);
     })
-    .then(function (pushSubscription) {
+    .then((pushSubscription) => {
       console.log(
         "Received PushSubscription: ",
         JSON.stringify(pushSubscription),
