@@ -42,8 +42,8 @@ function onHugsButtonClick() {
       triggerPushFromBackend().then((res) => console.log(res));
     } else {
       const notification = new Notification("Hug Delivered!", MyNotification);
+      addClickEvent(notification);
     }
-    addClickEvent(notification);
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
     Notification.requestPermission().then((permission) => {
@@ -51,6 +51,7 @@ function onHugsButtonClick() {
       if (permission === "granted") {
         hugsButton.innerHTML = "FREE HUG 🤗";
         const notification = new Notification("Hug Delivered!", MyNotification);
+        addClickEvent(notification);
 
         subscribeUserToPush().then((subscription) => {
           sendSubscriptionToBackEnd(subscription).then((res) => {
@@ -59,8 +60,6 @@ function onHugsButtonClick() {
             }
           });
         });
-
-        addClickEvent(notification);
       }
     });
   }
