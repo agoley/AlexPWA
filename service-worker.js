@@ -11,13 +11,10 @@ self.addEventListener("install", function (event) {
     caches.open(myCache).then(function (cache) {
       return cache.addAll([
         "/",
-        "/static/css/main.css",
+        "/static/css/index.css",
         "/static/img/profile.jpg",
-        "/static/img/profile_offline.jpg",
-        "/static/img/profile_old.jpg",
         "/static/img/profile_medium.jpg",
         "/static/img/profile_small.jpg",
-        "/static/js/offline.js",
         "/static/js/notifications.js",
       ]);
     }),
@@ -74,12 +71,8 @@ self.addEventListener("notificationclose", (e) => {
 });
 
 self.addEventListener("notificationclick", ({ notification, action }) => {
-  if (action === "thumbs-down") {
-    notification.close();
-  } else {
-    clients.openWindow("/speaking.html");
-    notification.close();
-  }
+  clients.openWindow("https://www.linkedin.com/in/alex-goley-6230479b/");
+  notification.close();
 });
 
 // self.addEventListener("push", function (event) {
