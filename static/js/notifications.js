@@ -37,7 +37,11 @@ function onHugsButtonClick() {
   } else if (Notification.permission === "granted") {
     // Check whether notification permissions have already been granted;
     // if so, create a notification
-    const notification = new Notification("Hug Delivered!", MyNotification);
+    if (isMobile()) {
+      triggerPushFromBackend().then((res) => console.log(res));
+    } else {
+      const notification = new Notification("Hug Delivered!", MyNotification);
+    }
     addClickEvent(notification);
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
