@@ -93,15 +93,16 @@ self.addEventListener("push", function (event) {
 
   // Display notification or handle data
   // Example: show a notification
-  const title = "New Notification";
-  const body = event.data.text();
+  const title = "Hug Delivered";
+  const body = "This is getting personal! Lets connect 😆";
   const icon = "static/img/icons/icon-144x144.png";
-  const tag = "simple-push-demo-notification-tag";
+  const tag = new Date().getTime().toString();
 
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
       icon: icon,
+      image: "static/img/linkedin-secondary-136x136.png",
       tag: tag,
     }),
   );
