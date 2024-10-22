@@ -135,6 +135,7 @@ function sendSubscriptionToBackEnd(subscription) {
 }
 
 function triggerPushFromBackend() {
+  console.log("sending");
   return fetch(
     "https://alex-pwa-server-88f471dd113d.herokuapp.com/api/trigger-push-msg/",
     {
