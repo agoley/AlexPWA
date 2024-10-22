@@ -6,21 +6,13 @@ https://developers.google.com/web/fundamentals/primers/service-workers/
 */
 
 const myCache = "alexgoley-v1";
-// self.addEventListener("install", function (event) {
-//   event.waitUntil(
-//     caches.open(myCache).then(function (cache) {
-//       return cache.addAll([
-//         "/",
-//         "static/styles/index.css",
-//         "static/img/profile.jpg",
-//         "static/img/profile_medium.jpg",
-//         "static/img/profile_small.jpg",
-//         "static/img/profile_offline.jpg",
-//         "static/js/notifications.js",
-//       ]);
-//     }),
-//   );
-// });
+self.addEventListener("install", function (event) {
+  event.waitUntil(
+    caches.open(myCache).then(function (cache) {
+      return cache.addAll(["/"]);
+    }),
+  );
+});
 
 self.addEventListener("fetch", function (event) {
   event.respondWith(staleWhileRevalidate(event));
@@ -119,18 +111,18 @@ self.addEventListener("push", function (event) {
 });
 
 // Use this to check if the user already has your site open and send it a postMessage
-// function messageClientWindows() {
-//   return clients
-//     .matchAll({
-//       type: "window",
-//       includeUncontrolled: true,
-//     })
-//     .then((windowClients) => {
-//       windowClients.forEach((windowClient) => {
-//         windowClient.postMessage({
-//           message: "Received a push message.",
-//           time: new Date().toString(),
-//         });
-//       });
-//     });
-// }
+function messageClientWindows() {
+  return clients
+    .matchAll({
+      type: "window",
+      includeUncontrolled: true,
+    })
+    .then((windowClients) => {
+      windowClients.forEach((windowClient) => {
+        windowClient.postMessage({
+          message: "Received a push message.",
+          time: new Date().toString(),
+        });
+      });
+    });
+}
