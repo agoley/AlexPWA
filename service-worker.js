@@ -119,18 +119,18 @@ self.addEventListener("push", function (event) {
 });
 
 // Use this to check if the user already has your site open and send it a postMessage
-function messageClientWindows() {
-  return clients
-    .matchAll({
-      type: "window",
-      includeUncontrolled: true,
-    })
-    .then((windowClients) => {
-      windowClients.forEach((windowClient) => {
-        windowClient.postMessage({
-          message: "Received a push message.",
-          time: new Date().toString(),
-        });
-      });
-    });
-}
+// function messageClientWindows() {
+//   return clients
+//     .matchAll({
+//       type: "window",
+//       includeUncontrolled: true,
+//     })
+//     .then((windowClients) => {
+//       windowClients.forEach((windowClient) => {
+//         windowClient.postMessage({
+//           message: "Received a push message.",
+//           time: new Date().toString(),
+//         });
+//       });
+//     });
+// }
