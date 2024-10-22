@@ -70,6 +70,7 @@ if (Notification.permission === "granted") {
 hugsButton.addEventListener("click", onHugsButtonClick);
 
 function subscribeUserToPush() {
+  console.log("subscribe user...");
   return navigator.serviceWorker.ready
     .then(function (registration) {
       const subscribeOptions = {
@@ -78,6 +79,7 @@ function subscribeUserToPush() {
           "BJbRM93fg6KqHGFX6FB8PaDFkCASnKZLJCnteElGbu8vkqF5ksSstJB6X7hqR-9xYGYYGEZPyDSUYJiqwRhuYTQ",
         ),
       };
+      console.log("creating subscription");
 
       return registration.pushManager.subscribe(subscribeOptions);
     })
