@@ -9,7 +9,7 @@ const myCache = "alexgoley-v1";
 self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(myCache).then(function (cache) {
-      return cache.addAll(["/"]);
+      return cache.addAll([]);
     }),
   );
 });
