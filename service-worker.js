@@ -11,7 +11,7 @@ self.addEventListener("install", function (event) {
     caches.open(myCache).then(function (cache) {
       return cache.addAll([
         "/",
-        "/static/css/index.css",
+        "/static/styles/index.css",
         "/static/img/profile.jpg",
         "/static/img/profile_medium.jpg",
         "/static/img/profile_small.jpg",
