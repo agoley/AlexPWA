@@ -51,10 +51,10 @@ function onHugsButtonClick() {
         const notification = new Notification("Hug Delivered!", MyNotification);
         addClickEvent(notification);
 
-        alert("hey");
         subscribeUserToPush().then((subscription) => {
+          alert(JSON.stringify(subscription));
           sendSubscriptionToBackEnd(subscription).then((res) =>
-            console.log("res"),
+            alert(JSON.stringify(res)),
           );
         });
       }
