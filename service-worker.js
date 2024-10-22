@@ -6,21 +6,21 @@ https://developers.google.com/web/fundamentals/primers/service-workers/
 */
 
 const myCache = "alexgoley-v1";
-// self.addEventListener("install", function (event) {
-//   event.waitUntil(
-//     caches.open(myCache).then(function (cache) {
-//       return cache.addAll([
-//         "/",
-//         "static/styles/index.css",
-//         "static/img/profile.jpg",
-//         "static/img/profile_medium.jpg",
-//         "static/img/profile_small.jpg",
-//         "static/img/profile_offline.jpg",
-//         "static/js/notifications.js",
-//       ]);
-//     }),
-//   );
-// });
+self.addEventListener("install", function (event) {
+  event.waitUntil(
+    caches.open(myCache).then(function (cache) {
+      return cache.addAll([
+        "/",
+        "static/styles/index.css",
+        "static/img/profile.jpg",
+        "static/img/profile_medium.jpg",
+        "static/img/profile_small.jpg",
+        "static/img/profile_offline.jpg",
+        "static/js/notifications.js",
+      ]);
+    }),
+  );
+});
 
 self.addEventListener("fetch", function (event) {
   event.respondWith(staleWhileRevalidate(event));
