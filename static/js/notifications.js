@@ -31,6 +31,7 @@ function addClickEvent(notification) {
 }
 
 function onHugsButtonClick() {
+  console.log("init hug");
   if (!("Notification" in window)) {
     // Check if the browser supports notifications
     alert("This browser does not support desktop notification");
