@@ -70,11 +70,9 @@ hugsButton.addEventListener("click", onHugsButtonClick);
 
 function subscribeUserToPush() {
   console.log("subscribe user...");
-  alert("waiting...");
   return navigator.serviceWorker.ready
     .then((registration) => {
       console.log("service worker ready...");
-      alert("ready");
 
       const subscribeOptions = {
         userVisibleOnly: true,
