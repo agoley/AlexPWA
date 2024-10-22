@@ -38,11 +38,10 @@ function onHugsButtonClick() {
   } else if (Notification.permission === "granted") {
     // Check whether notification permissions have already been granted;
     // if so, create a notification
-     triggerPushFromBackend().then((res) => console.log(res));
+    triggerPushFromBackend().then((res) => console.log(res));
 
-      const notification = new Notification("Hug Delivered!", MyNotification);
-      addClickEvent(notification);
-    
+    const notification = new Notification("Hug Delivered!", MyNotification);
+    addClickEvent(notification);
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
     Notification.requestPermission().then((permission) => {
@@ -53,7 +52,9 @@ function onHugsButtonClick() {
         addClickEvent(notification);
 
         subscribeUserToPush().then((subscription) => {
-          sendSubscriptionToBackEnd(subscription).then(res => console.log("res"));
+          sendSubscriptionToBackEnd(subscription).then((res) =>
+            console.log("res"),
+          );
         });
       }
     });
@@ -90,6 +91,7 @@ function subscribeUserToPush() {
         JSON.stringify(pushSubscription),
       );
       return pushSubscription;
+    });
 }
 
 // Web-Push
