@@ -54,11 +54,7 @@ function onHugsButtonClick() {
         addClickEvent(notification);
 
         subscribeUserToPush().then((subscription) => {
-          sendSubscriptionToBackEnd(subscription).then((res) => {
-            if (isMobile()) {
-              triggerPushFromBackend().then((res) => console.log(res));
-            }
-          });
+          sendSubscriptionToBackEnd(subscription);
         });
       }
     });
@@ -110,6 +106,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 function sendSubscriptionToBackEnd(subscription) {
+  console.log("sending subscription...");
   return fetch(
     "https://alex-pwa-server-88f471dd113d.herokuapp.com/api/save-subscription/",
     {
